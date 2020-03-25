@@ -1,7 +1,14 @@
 <div class="<%= className %>">
     <div class="weui-mask_transparent"></div>
+    <% if (icon) { %>
     <div class="weui-toast">
-        <i class="weui-icon_toast weui-icon-success-no-circle"></i>
-        <p class="weui-toast__content"><%=content%></p>
+        <i class="<%=icon%> weui-icon_toast"></i>
+        <p class="weui-toast__content"><%=title%></p>
     </div>
+    <% } else { %>
+    <div class="weui-toast" style="width: auto;height: auto;padding: 6px 20px">
+        <i class="weui-icon_toast"></i>
+        <p class="weui-toast__content"><%=title%></p>
+    </div>
+    <% } %>
 </div>
