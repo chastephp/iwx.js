@@ -3,7 +3,7 @@ const config = require('./webpack.mod.config');
 
 
 Promise.all([
-        {weui: './weui.js'}
+        {iwx: './iwx.js'}
     ].map((entry) => {
         return new Promise((resolve, reject) => {
             webpack(config(entry), function (error) {

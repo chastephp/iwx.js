@@ -1,8 +1,8 @@
 {
-  "name": "weui.js",
+  "name": "iwx.js",
   "version": "1.2.1",
-  "description": "weui.js",
-  "main": "./dist/weui.min.js",
+  "description": "iwx.js",
+  "main": "./dist/iwx.min.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.example.config.js --content-base dist/example --progress --colors --host 0.0.0.0 --port 8001",
     "build": "npm run clean && npm run lint && webpack --config ./build/webpack.example.config.js && node build/build.js",
@@ -13,13 +13,11 @@
     "server": "node uploader-server/index.js"
   },
   "keywords": [
-    "weui",
+    "iwx",
     "jquery",
     "javascript",
     "zepto"
   ],
-  "homepage": "https://weui.io",
-  "author": "wechat ui team",
   "license": "MIT",
   "dependencies": {
     "balajs": "^0.1.9",

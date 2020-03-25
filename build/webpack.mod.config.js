@@ -30,7 +30,7 @@ module.exports = function (entry, isMinify) {
         output: {
             path: path.join(__dirname, '../dist'),
             filename: isMinify ? '[name].min.js' : '[name].js',
-            library: 'weui',
+            library: 'iwx',
             libraryTarget: 'umd',
             umdNameDefine: true
         },
