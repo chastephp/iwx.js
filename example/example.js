@@ -7,42 +7,41 @@ FastClick.attach(document.body);
 /* dialog */
 document.querySelector('#alertBtn').addEventListener('click', function () {
     iwx.alert('自定义标题的alert', function () {
-        console.log('ok')
+        console.log('ok');
     }, {
         title: '自定义标题'
     });
 });
-
 
 /* confirm */
 document.querySelector('#confirmBtn').addEventListener('click', function () {
     iwx.confirm('自定义标题的confirm', function () {
-        console.log('yes')
+        console.log('yes');
     }, function () {
-        console.log('no')
+        console.log('no');
     }, {
         title: '自定义标题'
     });
 });
 
-
 /* toast */
 document.querySelector('#toastBtn').addEventListener('click', function () {
-    iwx.toast('操作成功', {
+    iwx.showToast({
+        title: '操作成功',
         duration: 3000,
-        className: "bears"
+        icon: 'none'
     });
 });
 
-
 /* loading */
 document.querySelector('#loadingBtn').addEventListener('click', function () {
-    var loading = iwx.loading('loading');
+    iwx.showLoading({
+        title: 'loading'
+    });
     setTimeout(function () {
-        loading.hide();
+        iwx.hideLoading();
     }, 3000);
 });
-
 
 /* actionSheet */
 document.querySelector('#actionSheetBtn').addEventListener('click', function () {
@@ -72,25 +71,23 @@ document.querySelector('#actionSheetBtn').addEventListener('click', function () 
         }
     ], {
         title: 'actionTitle',
-        className: "custom-classname",
-        onClose: function(){
+        className: 'custom-classname',
+        onClose: function () {
             console.log('关闭');
         }
     });
 });
 
-
 /* topTips */
 document.querySelector('#topTipsBtn').addEventListener('click', function () {
     iwx.topTips('请填写正确的字段', {
         duration: 3000,
-        className: "custom-classname",
+        className: 'custom-classname',
         callback: function () {
             console.log('close');
         }
     });
 });
-
 
 /* picker */
 // 普通选择器
@@ -135,7 +132,7 @@ document.querySelector('#pickerBtn').addEventListener('click', function () {
             console.log(result);
         },
         onConfirm: function (result) {
-            console.log('confirm')
+            console.log('confirm');
             console.log(result);
         },
         id: 'picker',
@@ -207,7 +204,7 @@ document.querySelector('#multiPickerBtn').addEventListener('click', function () 
             console.log(result);
         },
         id: 'multiPickerBtn',
-        onClose: function(){
+        onClose: function () {
             console.log('onClose');
         },
         title: '多列选择器'
@@ -292,63 +289,60 @@ document.querySelector('#cascadePickerBtn').addEventListener('click', function (
     });
 });
 
-
 /* searchbar */
 iwx.searchBar('#searchBar');
 
-
 /* slider 因为需要获取长度，所以必须要在slider显示的时候才调用iwx.slider*/
 var isSetSlider = false;
-function setSlider(){
-    if(isSetSlider) return;
+
+function setSlider () {
+    if (isSetSlider) return;
     isSetSlider = true;
 
     // 普通slider
-    var sliderValue = document.getElementById("sliderValue");
+    var sliderValue = document.getElementById('sliderValue');
     iwx.slider('#slider', {
         defaultValue: 50,
-        onChange: function(percent){
+        onChange: function (percent) {
             sliderValue.innerHTML = Math.round(percent);
             console.log(percent);
         }
     });
 
     // 带step的slider
-    var sliderStepValue = document.getElementById("sliderStepValue");
+    var sliderStepValue = document.getElementById('sliderStepValue');
     iwx.slider('#sliderStep', {
         step: 10,
         defaultValue: 40,
-        onChange: function(percent){
+        onChange: function (percent) {
             sliderStepValue.innerHTML = Math.round(percent);
             console.log(percent);
         }
     });
 
     // 分块的slider
-    var sliderBlockValue = document.getElementById("sliderBlockValue");
+    var sliderBlockValue = document.getElementById('sliderBlockValue');
     iwx.slider('#sliderBlock', {
         step: 100 / 3,
         defaultValue: 33.333,
-        onChange: function(percent){
+        onChange: function (percent) {
             sliderBlockValue.innerHTML = Math.round(percent);
             console.log(percent);
         }
     });
 }
 
-
 /* tab */
-iwx.tab('#tab',{
+iwx.tab('#tab', {
     defaultIndex: 0,
-    onChange: function(index){
+    onChange: function (index) {
         console.log(index);
 
-        if(index == 3){
+        if (index == 3) {
             setSlider(); // 设置slider
         }
     }
 });
-
 
 /* form */
 // 约定正则
@@ -376,10 +370,9 @@ document.querySelector('#formSubmitBtn').addEventListener('click', function () {
     }, regexp);
 });
 
-
 /* 图片自动上传 */
 var uploadCount = 0, uploadList = [];
-var uploadCountDom = document.getElementById("uploadCount");
+var uploadCountDom = document.getElementById('uploadCount');
 iwx.uploader('#uploader', {
     url: 'http://' + location.hostname + ':8002/upload',
     auto: true,
@@ -390,12 +383,12 @@ iwx.uploader('#uploader', {
         height: 1600,
         quality: .8
     },
-    onBeforeQueued: function(files) {
-        if(["image/jpg", "image/jpeg", "image/png", "image/gif"].indexOf(this.type) < 0){
+    onBeforeQueued: function (files) {
+        if (['image/jpg', 'image/jpeg', 'image/png', 'image/gif'].indexOf(this.type) < 0) {
             iwx.alert('请上传图片');
             return false;
         }
-        if(this.size > 10 * 1024 * 1024){
+        if (this.size > 10 * 1024 * 1024) {
             iwx.alert('请上传不超过10M的图片');
             return false;
         }
@@ -411,54 +404,53 @@ iwx.uploader('#uploader', {
         ++uploadCount;
         uploadCountDom.innerHTML = uploadCount;
     },
-    onQueued: function(){
+    onQueued: function () {
         uploadList.push(this);
         console.log(this);
     },
-    onBeforeSend: function(data, headers){
+    onBeforeSend: function (data, headers) {
         console.log(this, data, headers);
         // $.extend(data, { test: 1 }); // 可以扩展此对象来控制上传参数
         // $.extend(headers, { Origin: 'http://127.0.0.1' }); // 可以扩展此对象来控制上传头部
 
         // return false; // 阻止文件上传
     },
-    onProgress: function(procent){
+    onProgress: function (procent) {
         console.log(this, procent);
     },
     onSuccess: function (ret) {
         console.log(this, ret);
     },
-    onError: function(err){
+    onError: function (err) {
         console.log(this, err);
     }
 });
 
 // 缩略图预览
-document.querySelector('#uploaderFiles').addEventListener('click', function(e){
+document.querySelector('#uploaderFiles').addEventListener('click', function (e) {
     var target = e.target;
 
-    while(!target.classList.contains('iwx-uploader__file') && target){
+    while (!target.classList.contains('iwx-uploader__file') && target) {
         target = target.parentNode;
     }
-    if(!target) return;
+    if (!target) return;
 
     var url = target.getAttribute('style') || '';
     var id = target.getAttribute('data-id');
 
-    if(url){
+    if (url) {
         url = url.match(/url\((.*?)\)/)[1].replace(/"/g, '');
     }
     var gallery = iwx.gallery(url, {
         className: 'custom-name',
-        onDelete: function(){
-            iwx.confirm('确定删除该图片？', function(){
+        onDelete: function () {
+            iwx.confirm('确定删除该图片？', function () {
                 --uploadCount;
                 uploadCountDom.innerHTML = uploadCount;
 
-
                 for (var i = 0, len = uploadList.length; i < len; ++i) {
                     var file = uploadList[i];
-                    if(file.id == id){
+                    if (file.id == id) {
                         file.stop();
                         break;
                     }
@@ -470,7 +462,6 @@ document.querySelector('#uploaderFiles').addEventListener('click', function(e){
     });
 });
 
-
 /* 图片手动上传 */
 var uploadCustomFileList = [];
 
@@ -478,45 +469,45 @@ var uploadCustomFileList = [];
 iwx.uploader('#uploaderCustom', {
     url: 'http://localhost:8002/upload',
     auto: false,
-    onQueued: function() {
+    onQueued: function () {
         uploadCustomFileList.push(this);
     }
 });
 
 // 手动上传按钮
-document.getElementById("uploaderCustomBtn").addEventListener('click', function(){
-    uploadCustomFileList.forEach(function(file){
+document.getElementById('uploaderCustomBtn').addEventListener('click', function () {
+    uploadCustomFileList.forEach(function (file) {
         file.upload();
     });
 });
 
 // 缩略图预览
-document.querySelector('#uploaderCustomFiles').addEventListener('click', function(e){
+document.querySelector('#uploaderCustomFiles').addEventListener('click', function (e) {
     var target = e.target;
 
-    while(!target.classList.contains('iwx-uploader__file') && target){
+    while (!target.classList.contains('iwx-uploader__file') && target) {
         target = target.parentNode;
     }
-    if(!target) return;
+    if (!target) return;
 
     var url = target.getAttribute('style') || '';
     var id = target.getAttribute('data-id');
 
-    if(url){
+    if (url) {
         url = url.match(/url\((.*?)\)/)[1].replace(/"/g, '');
     }
     var gallery = iwx.gallery(url, {
-        onDelete: function(){
-            iwx.confirm('确定删除该图片？', function(){
+        onDelete: function () {
+            iwx.confirm('确定删除该图片？', function () {
                 var index;
                 for (var i = 0, len = uploadCustomFileList.length; i < len; ++i) {
                     var file = uploadCustomFileList[i];
-                    if(file.id == id){
+                    if (file.id == id) {
                         index = i;
                         break;
                     }
                 }
-                if(index !== undefined) uploadCustomFileList.splice(index, 1);
+                if (index !== undefined) uploadCustomFileList.splice(index, 1);
 
                 target.remove();
                 gallery.hide();

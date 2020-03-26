@@ -47,6 +47,11 @@ module.exports = {
             'process.env.NODE_ENV': '"dev"'
         }),
         new HtmlWebpackPlugin({
+            filename: 'example.html',
+            template: path.join(__dirname, '../example/example.html')
+        }),
+        new HtmlWebpackPlugin({
+            inject:false,
             template: path.join(__dirname, '../example/index.html')
         }),
         new OpenBrowserPlugin({url: 'http://localhost:8001'})
