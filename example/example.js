@@ -33,6 +33,14 @@ document.querySelector('#toastBtn').addEventListener('click', function () {
     });
 });
 
+/* modal */
+document.querySelector('#modalBtn').addEventListener('click', function () {
+    iwx.showModal({
+        title: '操作成功',
+        content: 'xxoo',
+    });
+});
+
 /* loading */
 document.querySelector('#loadingBtn').addEventListener('click', function () {
     iwx.showLoading({

@@ -17,6 +17,7 @@
 import dialog from './dialog/dialog';
 import alert from './alert/alert';
 import confirm from './confirm/confirm';
+import showModal from './modal/modal';
 import { showToast, hideToast } from './toast/toast';
 import { showLoading, hideLoading } from './loading/loading';
 import actionSheet from './actionSheet/actionSheet';
@@ -33,6 +34,7 @@ export default {
     dialog,
     alert,
     confirm,
+    showModal,
     showToast,
     hideToast,
     showLoading,
