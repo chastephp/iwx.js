@@ -60,20 +60,21 @@ document.querySelector('#actionSheetBtn').addEventListener('click', function () 
     iwx.showActionSheet({
         itemList: ['A', 'B', 'C'],
         success (res) {
-            console.log(res,'xxx')
+            console.log(res, 'xxx');
         },
         fail (res) {
-            console.log(res.errMsg)
+            console.log(res.errMsg);
         }
-    })
+    });
 });
 
-/* topTips */
+/* showTopTip */
 document.querySelector('#topTipsBtn').addEventListener('click', function () {
-    iwx.topTips('请填写正确的字段', {
+    iwx.showTopTip({
+        content: '请填写正确的字段',
         duration: 3000,
         className: 'custom-classname',
-        callback: function () {
+        success: function () {
             console.log('close');
         }
     });

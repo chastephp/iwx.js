@@ -14,12 +14,11 @@
 * limitations under the License.
 */
 
-import dialog from './dialog/dialog';
 import showModal from './modal/modal';
 import { showToast, hideToast } from './toast/toast';
 import { showLoading, hideLoading } from './loading/loading';
 import showActionSheet from './actionSheet/actionSheet';
-import topTips from './topTips/topTips';
+import showTopTip from './topTip/topTip';
 import searchBar from './searchBar/searchBar';
 import tab from './tab/tab';
 import form from './form/form';
@@ -29,14 +28,13 @@ import gallery from './gallery/gallery';
 import slider from './slider/slider';
 
 export default {
-    dialog,
     showModal,
     showToast,
     hideToast,
     showLoading,
     hideLoading,
     showActionSheet,
-    topTips,
+    showTopTip,
     searchBar,
     tab,
     form,

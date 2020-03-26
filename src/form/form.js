@@ -15,7 +15,7 @@
 */
 
 import $ from '../util/util';
-import topTips from '../topTips/topTips';
+import showTopTip from '../topTip/topTip';
 
 function _findCellParent(ele){
     if(!ele || !ele.classList) return null;
@@ -215,7 +215,7 @@ function checkIfBlur(selector, options = {}){
  * showErrorTips 显示错误提示
  * @param {Object} error 错误数据
  * @param {string} error.ele 出错了的dom元素
- * @param {string} error.msg 出错了的msg。会根据此`msg`找到对应的`Tips`（比如`msg`是`empty`），那么`ele`上的`emptyTips`就会以`topTips`显示
+ * @param {string} error.msg 出错了的msg。会根据此`msg`找到对应的`Tips`（比如`msg`是`empty`），那么`ele`上的`emptyTips`就会以`showTopTip`显示
  *
  * @example
  * weui.form.showErrorTips({
@@ -227,7 +227,7 @@ function showErrorTips(error){
     if(error){
         const $ele = $(error.ele), msg = error.msg,
             tips = $ele.attr(msg + 'Tips') || $ele.attr('tips') || $ele.attr('placeholder');
-        if(tips) topTips(tips);
+        if(tips) showTopTip(tips);
 
         if(error.ele.type == 'checkbox' || error.ele.type == 'radio') return;
 
