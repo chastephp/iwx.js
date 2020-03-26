@@ -6,21 +6,25 @@ FastClick.attach(document.body);
 
 /* dialog */
 document.querySelector('#alertBtn').addEventListener('click', function () {
-    iwx.alert('自定义标题的alert', function () {
-        console.log('ok');
-    }, {
-        title: '自定义标题'
+    iwx.showModal({
+        title: '自定义标题',
+        content: '自定义标题的Alert',
+        showCancel: false,
+        success: (res) => {
+            console.log('success', res);
+        }
     });
 });
 
 /* confirm */
 document.querySelector('#confirmBtn').addEventListener('click', function () {
-    iwx.confirm('自定义标题的confirm', function () {
-        console.log('yes');
-    }, function () {
-        console.log('no');
-    }, {
-        title: '自定义标题'
+    iwx.showModal({
+        title: '自定义标题',
+        content: '自定义标题的Confirm',
+        showCancel: false,
+        success: (res) => {
+            console.log('success', res);
+        }
     });
 });
 
