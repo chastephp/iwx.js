@@ -18,7 +18,7 @@ import dialog from './dialog/dialog';
 import showModal from './modal/modal';
 import { showToast, hideToast } from './toast/toast';
 import { showLoading, hideLoading } from './loading/loading';
-import actionSheet from './actionSheet/actionSheet';
+import showActionSheet from './actionSheet/actionSheet';
 import topTips from './topTips/topTips';
 import searchBar from './searchBar/searchBar';
 import tab from './tab/tab';
@@ -35,7 +35,7 @@ export default {
     hideToast,
     showLoading,
     hideLoading,
-    actionSheet,
+    showActionSheet,
     topTips,
     searchBar,
     tab,

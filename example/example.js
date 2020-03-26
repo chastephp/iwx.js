@@ -57,37 +57,15 @@ document.querySelector('#loadingBtn').addEventListener('click', function () {
 
 /* actionSheet */
 document.querySelector('#actionSheetBtn').addEventListener('click', function () {
-    iwx.actionSheet([
-        {
-            label: '拍照',
-            onClick: function () {
-                console.log('拍照');
-            }
-        }, {
-            label: '从相册选择',
-            onClick: function () {
-                console.log('从相册选择');
-            }
-        }, {
-            label: '其他',
-            onClick: function () {
-                console.log('其他');
-            }
+    iwx.showActionSheet({
+        itemList: ['A', 'B', 'C'],
+        success (res) {
+            console.log(res,'xxx')
+        },
+        fail (res) {
+            console.log(res.errMsg)
         }
-    ], [
-        {
-            label: '取消',
-            onClick: function () {
-                console.log('取消');
-            }
-        }
-    ], {
-        title: 'actionTitle',
-        className: 'custom-classname',
-        onClose: function () {
-            console.log('关闭');
-        }
-    });
+    })
 });
 
 /* topTips */
